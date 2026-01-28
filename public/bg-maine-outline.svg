@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <g fill="none" stroke="rgba(148,163,184,0.18)" stroke-width="3">
+    <!-- Abstracted Maine outline watermark (not an official seal) -->
+    <path d="M220 40
+             L360 80
+             L420 160
+             L390 260
+             L430 360
+             L410 520
+             L330 640
+             L260 720
+             L200 680
+             L160 600
+             L120 520
+             L140 420
+             L110 320
+             L140 220
+             L180 140
+             Z"/>
+  </g>
+</svg>

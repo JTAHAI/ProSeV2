@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-indigo: #6366f1;
+}
+
+body {
+  /* Deep space background to make the "Phone" pop */
+  background: radial-gradient(circle at top, #1e293b 0%, #020617 100%);
+  margin: 0;
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: flex-start; /* Aligns to top */
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* The Phone Bezel Styling */
+.phone-bezel {
+  @apply relative mt-8 mb-8 border-[12px] border-slate-800 rounded-[3rem] shadow-2xl;
+  width: 375px; /* Standard mobile width */
+  min-height: 700px;
+  background: #0f172a;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.05), 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* The "Dynamic Island" or Speaker at top */
+.phone-top-bar {
+  @apply absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-800 rounded-b-2xl z-50;
+}
+
+/* Tactical Input Fields */
+.input-field {
+  @apply w-full bg-slate-950/60 border border-white/5 rounded-2xl p-4 
+         text-white placeholder-slate-600 outline-none transition-all
+         shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]
+         focus:border-indigo-500/50 focus:ring-4 focus:ring-indigo-500/10;
+}
