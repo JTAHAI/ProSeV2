@@ -3,38 +3,182 @@
 @tailwind utilities;
 
 :root {
-  --primary-indigo: #6366f1;
+  color-scheme: dark;
 }
 
+/* Global background */
 body {
-  /* Deep space background to make the "Phone" pop */
-  background: radial-gradient(circle at top, #1e293b 0%, #020617 100%);
   margin: 0;
-  display: flex;
-  justify-content: center; /* Centers horizontally */
-  align-items: flex-start; /* Aligns to top */
   min-height: 100vh;
-  overflow-x: hidden;
+  background: url('/bg-tech-blur.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
-/* The Phone Bezel Styling */
-.phone-bezel {
-  @apply relative mt-8 mb-8 border-[12px] border-slate-800 rounded-[3rem] shadow-2xl;
-  width: 375px; /* Standard mobile width */
-  min-height: 700px;
-  background: #0f172a;
-  box-shadow: 0 0 0 2px rgba(255,255,255,0.05), 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+/* Soft overlays to match the "court-ish / futuristic glass" look */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 600px at 20% 10%, rgba(56, 189, 248, 0.18), transparent 60%),
+    radial-gradient(900px 500px at 80% 30%, rgba(59, 130, 246, 0.16), transparent 60%),
+    radial-gradient(1000px 600px at 50% 90%, rgba(244, 63, 94, 0.10), transparent 60%),
+    linear-gradient(to bottom, rgba(2, 6, 23, 0.70), rgba(2, 6, 23, 0.78));
 }
 
-/* The "Dynamic Island" or Speaker at top */
-.phone-top-bar {
-  @apply absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-800 rounded-b-2xl z-50;
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url('/bg-grid.svg');
+  background-repeat: repeat;
+  opacity: 0.08;
+  mix-blend-mode: screen;
 }
 
-/* Tactical Input Fields */
-.input-field {
-  @apply w-full bg-slate-950/60 border border-white/5 rounded-2xl p-4 
-         text-white placeholder-slate-600 outline-none transition-all
-         shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]
-         focus:border-indigo-500/50 focus:ring-4 focus:ring-indigo-500/10;
+
+/* Shell to allow a phone mock next to the window */
+.app-shell {
+  position: relative;
+  width: min(1320px, 96vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Phone mock (decorative, optional) */
+.phone-card {
+  position: absolute;
+  right: -84px;
+  bottom: 44px;
+  width: 220px;
+  height: 420px;
+  border-radius: 2.5rem;
+  background: rgba(8, 17, 34, 0.66);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(147, 197, 253, 0.14);
+  box-shadow:
+    0 40px 90px -30px rgba(0,0,0,0.85),
+    0 0 0 1px rgba(255,255,255,0.04) inset;
+  overflow: hidden;
+}
+
+.phone-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 2.75rem;
+  background: linear-gradient(135deg,
+      rgba(56, 189, 248, 0.30),
+      rgba(59, 130, 246, 0.16),
+      rgba(244, 63, 94, 0.12)
+    );
+  filter: blur(18px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.phone-inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 18px;
+}
+
+.phone-logo {
+  width: 112px;
+  height: 112px;
+  border-radius: 28px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 18px 50px -28px rgba(0,0,0,0.85);
+}
+
+/* Glass "app window" */
+.app-window {
+  background: rgba(8, 17, 34, 0.72);
+  backdrop-filter: blur(26px);
+  border: 1px solid rgba(147, 197, 253, 0.16);
+  box-shadow:
+    0 60px 120px -35px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  width: min(1180px, 96vw);
+  height: min(790px, 86vh);
+  border-radius: 2.75rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Subtle edge glow */
+.app-window::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 3rem;
+  pointer-events: none;
+  background: linear-gradient(135deg,
+      rgba(56, 189, 248, 0.35),
+      rgba(59, 130, 246, 0.18),
+      rgba(244, 63, 94, 0.14)
+    );
+  filter: blur(18px);
+  opacity: 0.35;
+  z-index: 0;
+}
+
+.app-window > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.nav-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 2.25rem;
+  background: linear-gradient(to right, rgba(15, 23, 42, 0.82), rgba(2, 6, 23, 0.50));
+  border-bottom: 1px solid rgba(147, 197, 253, 0.14);
+}
+
+/* Card hover polish */
+.tool-card {
+  transform: translateZ(0);
+}
+.tool-card:hover {
+  border-color: rgba(56, 189, 248, 0.28) !important;
+  background: rgba(255, 255, 255, 0.045) !important;
+  box-shadow: 0 20px 60px -25px rgba(56, 189, 248, 0.35);
+  transform: translateY(-6px);
+}
+
+/* Icon bubble */
+.tool-bubble {
+  @apply w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-4 transition-all duration-500;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 2px 4px rgba(255,255,255,0.10), 0 10px 20px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.group:hover .tool-bubble {
+  background: rgba(56, 189, 248, 0.14);
+  border-color: rgba(56, 189, 248, 0.32);
+  transform: translateY(-5px) scale(1.05);
+}
+
+/* Primary CTA */
+.btn-start {
+  background: linear-gradient(145deg, #fb7185, #be123c);
+  @apply px-16 md:px-20 py-5 rounded-full text-white font-black uppercase tracking-[0.2em] shadow-2xl transition-all active:scale-95;
+  box-shadow: 0 18px 40px -10px rgba(225, 29, 72, 0.55);
 }
