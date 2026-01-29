@@ -1,5 +1,5 @@
 import './globals.css'
-import ResearchSidebar from '@/components/ResearchSidebar'
+import AppShell from '@/components/AppShell'
 
 export const metadata = {
   title: 'Pro Se',
@@ -8,15 +8,11 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+     <html lang="en">
       <body>
-        <div className="app-shell">
-          <main className="app-window">
-            {children}
-          </main>
-          <ResearchSidebar />
-        </div>
+        <AppShell>{children}</AppShell>
       </body>
-    </html>
-  )
-}
+    </html> 
+      )
+  }
+
