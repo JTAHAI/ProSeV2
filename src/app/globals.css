@@ -10,8 +10,9 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: url('/bg-tech-blur.jpg') no-repeat center center fixed;
+  :background: linear-gradient(180deg, #020617, #0f172a);
   background-size: cover;
+
 }
 
 /* Soft overlays to match the "court-ish / futuristic glass" look */
